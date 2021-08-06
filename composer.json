@@ -1,19 +1,25 @@
 {
   "name":"lys/php-until",
+  "description": "PHP工具类",
+  "keywords": ["PHP工具类"],
+  "homepage": "https://github.com/1107012776/php-until",
+  "type": "library",
   "license": "Apache-2.0",
   "authors": [
     {
       "name": "lys",
       "email": "1107012776@qq.com",
-      "homepage": "https://github.com/1107012776",
-      "role": "Developer"
+      "homepage": "https://github.com/1107012776"
     }
   ],
   "require": {
     "php": ">=5.6"
   },
   "require-dev": {
-    "phpunit/phpunit": "^4.5"
+    "phpunit/phpunit": "^4.0|^5.0"
+  },
+  "suggest": {
+
   },
   "autoload": {
     "psr-4": {
@@ -24,5 +30,19 @@
     "psr-4": {
       "Lys\\Until\\Test\\": "tests/"
     }
-  }
+  },
+  "provide": {
+
+  },
+  "extra": {
+
+  },
+  "scripts": {
+
+  },
+  "config": {
+    "sort-packages": true,
+    "platform-check": false
+  },
+  "lock": false
 }
