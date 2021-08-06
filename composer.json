@@ -1,8 +1,8 @@
 {
-  "name":"lys/php-until",
+  "name":"lys/php-utility",
   "description": "PHP工具类",
   "keywords": ["PHP工具类"],
-  "homepage": "https://github.com/1107012776/php-until",
+  "homepage": "https://github.com/1107012776/php-utility",
   "type": "library",
   "license": "Apache-2.0",
   "authors": [
