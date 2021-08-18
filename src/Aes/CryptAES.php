@@ -1,6 +1,6 @@
 <?php
 /**
- * 需要php >= v7.0
+ * AES加密
  * User: admin
  * Date: 2019/8/13
  * Time: 16:19
