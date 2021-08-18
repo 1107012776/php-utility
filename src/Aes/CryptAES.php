@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
+ * 需要php >= v7.0
  * User: admin
  * Date: 2019/8/13
  * Time: 16:19
@@ -14,19 +14,19 @@ class CryptAES extends BaseAes
     public function __construct($key, $iv)
     {
         $this->hex_iv = $this->makeIv($iv);
-        $this->key = $this->makeIv($key);//因为openssl会截取16位
+        $this->key = $key;
     }
 
     public function encrypt($input)
     {
-        $data = openssl_encrypt($input, 'AES-128-CBC', $this->key, OPENSSL_RAW_DATA, $this->hex_iv);
+        $data = openssl_encrypt($input, 'AES-256-CBC', $this->key, OPENSSL_RAW_DATA, $this->hex_iv);
         $data = base64_encode($data);
         return $data;
     }
 
     public function decrypt($input)
     {
-        $decrypted = openssl_decrypt(base64_decode($input), 'AES-128-CBC', $this->key, OPENSSL_RAW_DATA, $this->hex_iv);
+        $decrypted = openssl_decrypt(base64_decode($input), 'AES-256-CBC', $this->key, OPENSSL_RAW_DATA, $this->hex_iv);
         return $decrypted;
     }
 
