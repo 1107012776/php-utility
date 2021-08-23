@@ -1,7 +1,5 @@
 <?php
 namespace Lys\Until\SnowFlake;
-use Swoole\Coroutine;
-
 class SnowFlake
 {
     private static $lastTimestamp = 0;
@@ -58,9 +56,13 @@ class SnowFlake
     {
         $timestamp = self::timeGen();
         while ($timestamp <= $lastTimestamp) {
-            $cid = Coroutine::getCid();
+            if(class_exists( \Swoole\Coroutine::class)){
+                $cid = \Swoole\Coroutine::getCid();
+            }else{
+                $cid = 0;
+            }
             if ($cid > 0) {
-                Coroutine::sleep(0.001);
+                \Swoole\Coroutine::sleep(0.001);
             } else {
                 usleep(1);
             }
