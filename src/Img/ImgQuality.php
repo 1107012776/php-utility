@@ -20,15 +20,18 @@ class ImgQuality
     private $tmp_path;
     private $error_msg;
     private $picture_size;
+    private $decr = 5;
 
     /**
      * ImgQuality constructor.
      * @param $path  //原始图片文件路径
      * @param $tmp_path //压缩转化图片文件路径
+     * @param $decr //持续压缩转化数
      */
-    public function __construct($path, $tmp_path)
+    public function __construct($path, $tmp_path, $decr = 5)
     {
         $this->tmp_path = $tmp_path;
+        $this->decr = $decr;
         $this->getInfo($path);
     }
 
@@ -172,7 +175,7 @@ class ImgQuality
                 return $this->tmp_path;
             }
             @unlink($this->tmp_path);
-            return $this->toJpg($quality - 5, $maxsize);
+            return $this->toJpg($quality - $this->decr, $maxsize);
         } else {
             $res = imagejpeg($this->picture_create, $this->tmp_path, $quality);
         }
