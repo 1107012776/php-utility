@@ -21,6 +21,7 @@ class ImgQuality
     private $error_msg;
     private $picture_size;
     private $decr = 5;
+    private $zip_decr = 0;
 
     /**
      * ImgQuality constructor.
@@ -174,8 +175,12 @@ class ImgQuality
             if ($filesize < $maxsize) {
                 return $this->tmp_path;
             }
+            if($this->zip_decr <= 0){
+                $zip = ($this->picture_size - $filesize)/$this->picture_size;
+                $this->zip_decr = $this->decr/$zip; //利用压缩比
+            }
             @unlink($this->tmp_path);
-            return $this->toJpg($quality - $this->decr, $maxsize);
+            return $this->toJpg($quality - $this->zip_decr, $maxsize);
         } else {
             $res = imagejpeg($this->picture_create, $this->tmp_path, $quality);
         }
