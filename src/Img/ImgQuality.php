@@ -176,8 +176,8 @@ class ImgQuality
                 return $this->tmp_path;
             }
             if($this->zip_decr <= 0){
-                $zip = ($this->picture_size - $filesize)/$this->picture_size;
-                $this->zip_decr = $this->decr/$zip; //利用压缩比
+                $spi = ($this->picture_size - $filesize)/$this->picture_size;
+                $this->zip_decr = $this->decr/$spi; //利用压缩比，加快图片处理速度
             }
             @unlink($this->tmp_path);
             return $this->toJpg($quality - $this->zip_decr, $maxsize);
