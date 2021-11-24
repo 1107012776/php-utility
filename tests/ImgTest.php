@@ -28,7 +28,7 @@ class ImgTest extends TestCase
      */
     public function testResize()
     {
-        $quality = new ImgQuality('./5.39M.png','./'.uniqid(date('YmdHis')).'.jpg');
+        $quality = new ImgQuality('./5.39M.png','./'.uniqid(date('YmdHis')).'.jpg',10);
         $res = $quality->toJpg(90,1024*1024);
         var_dump($res,$quality->getErrorMsg());
     }
@@ -39,7 +39,7 @@ class ImgTest extends TestCase
      */
     public function testResize1()
     {
-        $quality = new ImgQuality('./5.39M.png','./'.uniqid(date('YmdHis')).'.jpg',10);
+        $quality = new ImgQuality('./5.39M.png','./'.uniqid(date('YmdHis')).'.jpg',5);
         $res = $quality->toJpg(90,1024*1024);
         var_dump($res,$quality->getErrorMsg());
     }
