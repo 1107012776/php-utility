@@ -201,7 +201,7 @@ class ImgQuality
         imagefill($dis, 0, 0, $whiteColor);//区域填充颜色
         //将水印图片复制到目标图片上，最后个参数50是设置透明度，这里实现半透明效果，两个20是控制水印坐标位置
         imagecopymerge($dis, $this->picture_create, 0, 0, 0, 0, $src_w, $src_h, 100);
-        $res = imagepng($dis, $this->tmp_path, 9);
+        $res = imagejpeg($dis, $this->tmp_path, 100);
         if ($res) {
             return $this->tmp_path;
         }
