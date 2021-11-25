@@ -28,7 +28,7 @@ class ImgTest extends TestCase
      */
     public function testResize()
     {
-        $quality = new ImgQuality('./5.39M.png','./'.uniqid(date('YmdHis')).'.jpg',10);
+        $quality = new ImgQuality('./5.39M.png','./img/'.uniqid(date('YmdHis')).'.jpg',10);
         $res = $quality->toJpg(90,1024*1024);
         var_dump($res,$quality->getErrorMsg());
     }
@@ -39,7 +39,7 @@ class ImgTest extends TestCase
      */
     public function testResize1()
     {
-        $quality = new ImgQuality('./5.39M.png','./'.uniqid(date('YmdHis')).'.jpg',5);
+        $quality = new ImgQuality('./5.39M.png','./img/'.uniqid(date('YmdHis')).'.jpg',5);
         $res = $quality->toJpg(90,1024*1024);
         var_dump($res,$quality->getErrorMsg());
     }
@@ -51,7 +51,7 @@ class ImgTest extends TestCase
     public function testResize3()
     {
 
-        var_dump(filesize('./20211123190206619cca2e54d2c.jpg')/1024/1024);
+        var_dump(filesize('./img/20211123190206619cca2e54d2c.jpg')/1024/1024);
     }
     /**
      * png转化jpg会损失文件大小
@@ -60,10 +60,11 @@ class ImgTest extends TestCase
      */
     public function testResize4()
     {
-        $quality = new ImgQuality('./77k.png','./'.uniqid(date('YmdHis')).'.jpg',5);
-        $res = $quality->toJpg(100);
+        $quality = new ImgQuality('./77k.png','./img/'.uniqid(date('YmdHis')).'.jpg',5);
+        $tmp_path = $quality->toJpg(100);
 
-
+        $quality = new ImgQuality($tmp_path,'./img/'.uniqid(date('YmdHis')).'.jpg',5);
+        var_dump($quality->fillSize());
     }
 
 
