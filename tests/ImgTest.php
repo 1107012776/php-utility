@@ -53,5 +53,18 @@ class ImgTest extends TestCase
 
         var_dump(filesize('./20211123190206619cca2e54d2c.jpg')/1024/1024);
     }
+    /**
+     * png转化jpg会损失文件大小
+     * php vendor/bin/phpunit tests/DemoTest.php --filter testResize3
+     * @throws
+     */
+    public function testResize4()
+    {
+        $quality = new ImgQuality('./77k.png','./'.uniqid(date('YmdHis')).'.jpg',5);
+        $res = $quality->toJpg(100);
+
+
+    }
+
 
 }
