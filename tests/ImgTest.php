@@ -61,10 +61,25 @@ class ImgTest extends TestCase
     public function testResize4()
     {
         $quality = new ImgQuality('./77k.png','./img/'.uniqid(date('YmdHis')).'.jpg',5);
+//        var_dump($quality->getPictureType());
+//        return;
         $tmp_path = $quality->toJpg(100);
-
         $quality = new ImgQuality($tmp_path,'./img/'.uniqid(date('YmdHis')).'.jpg',5);
-        var_dump($quality->fillSize());
+        $tmp_path = $quality->resize();
+        var_dump($tmp_path);
+/*        $quality = new ImgQuality($tmp_path,'./img/'.uniqid(date('YmdHis')).'.jpg',5);
+        var_dump($quality->fillSize());*/
+    }
+
+    public function testCheck()
+    {
+        $quality = new ImgQuality('./img/2021112610203461a04472f0235.jpg','./img/'.uniqid(date('YmdHis')).'.jpg',5);
+        if($quality->validate(2,1024 * 1024)){
+            var_dump(1);
+        }else{
+            var_dump(2);
+        }
+
     }
 
 

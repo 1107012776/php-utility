@@ -56,12 +56,12 @@ class ImgQuality
             case 1:
                 $this->picture_create = imagecreatefromgif($picture_url);
                 $this->picture_type = 1;
-                $this->picture_ext = "jpg";
+                $this->picture_ext = "gif";
                 break;
             case 2:
                 $this->picture_create = imagecreatefromjpeg($picture_url);
                 $this->picture_type = 2;
-                $this->picture_ext = "gif";
+                $this->picture_ext = "jpg";
                 break;
             case 3:
                 $this->picture_create = imagecreatefrompng($picture_url);
@@ -85,6 +85,9 @@ class ImgQuality
             return false;
         }
         if ($maxsize < $this->picture_size) {
+            return false;
+        }
+        if ($this->picture_size <  1024 * 55) {  //小于最小值，需要去放大，所以这边直接给一个false
             return false;
         }
         return true;
@@ -204,6 +207,30 @@ class ImgQuality
         $res = imagejpeg($dis, $this->tmp_path, 100);
         if ($res) {
             return $this->tmp_path;
+        }
+        return false;
+    }
+
+
+    public function resize()
+    {
+        @unlink($this->tmp_path);
+        $source = $this->picture_create;
+        $source_w = imagesx($source);
+        $source_h = imagesy($source);
+        $src_w = $this->getPictureWidth();
+        $src_h =  $this->getPictureHeight();
+        $dest_w = $src_w * 2;
+        $dest_h = $src_h * 2;
+        $output = imagecreatetruecolor($dest_w, $dest_h);
+        imagealphablending($output, false);
+        $transparent = imagecolorallocatealpha($output, 0, 0, 0, 127);
+        imagefilledrectangle($output, 0, 0, $dest_w, $dest_h, $transparent);
+        imagesavealpha($output, true);
+        if (imagecopyresampled($output, $source, 0, 0, 0, 0, $dest_w, $dest_h, $source_w, $source_h)) {
+            if (imagejpeg($output, $this->tmp_path, 100)) {
+                return true;
+            }
         }
         return false;
     }
