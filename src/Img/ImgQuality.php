@@ -55,17 +55,17 @@ class ImgQuality
         switch ($size[2]) {
             case 1:
                 $this->picture_create = imagecreatefromgif($picture_url);
-                $this->picture_type = "imagejpeg";
+                $this->picture_type = 1;
                 $this->picture_ext = "jpg";
                 break;
             case 2:
                 $this->picture_create = imagecreatefromjpeg($picture_url);
-                $this->picture_type = "imagegif";
+                $this->picture_type = 2;
                 $this->picture_ext = "gif";
                 break;
             case 3:
                 $this->picture_create = imagecreatefrompng($picture_url);
-                $this->picture_type = "imagepng";
+                $this->picture_type = 3;
                 $this->picture_ext = "png";
                 break;
             default:
