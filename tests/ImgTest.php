@@ -68,4 +68,33 @@ class ImgTest extends TestCase
     }
 
 
+    public function testResize98k()
+    {
+        $quality = new ImgQuality('./98k.png','./img/'.uniqid(date('YmdHis')).'.jpg',5);
+        $tmp_path = $quality->toJpg(100);
+
+    }
+
+    public function testResize91k()
+    {
+        $quality = new ImgQuality('./91k.png','./img/'.uniqid(date('YmdHis')).'.jpg',5);
+        $tmp_path = $quality->toJpg(100);
+
+    }
+
+    public function testResize81k()
+    {
+        $quality = new ImgQuality('./81k.png','./img/'.uniqid(date('YmdHis')).'.jpg',5);
+        $tmp_path = $quality->toJpg(100);
+
+    }
+
+    public function testResize85k()
+    {
+        $quality = new ImgQuality('./85k.png','./img/'.uniqid(date('YmdHis')).'.jpg',5);
+        $tmp_path = $quality->toJpg(100);
+
+    }
+
+
 }
